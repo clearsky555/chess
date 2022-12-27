@@ -1,8 +1,14 @@
 from figures.figure import Color
+from figures.pawn import Pawn
 
 
 class Game:
     def _init_figures(self):
+        answer = []
+        for i in range(1,9):
+            answer.append(Pawn(i,2,color=Color.white))
+
+
         return []
     def __init__(self):
         self.figures = []
@@ -15,3 +21,5 @@ class Game:
 
     def show(self):
         pass
+
+print(answer)
