@@ -1,9 +1,11 @@
-from figures.figure import Figure
+from figures.figure import Figure, all_coords
+
 
 class Pawn(Figure):
 
+
     def _check_pawn_moves(self, x, y):
-        if y - self.y == 1 and x == self.x:
+        if y - self.y == 1 and x == self.x and self.color == 1 or y - self.y == -1 and x == self.x and self.color == 2:
             return True
         return False
 
@@ -15,5 +17,7 @@ class Pawn(Figure):
         if self._check(x, y):
             self.x = x
             self.y = y
+            all_coords[self.name] = [self.x, self.y]
+
         else:
             print('move is invalid')

@@ -1,17 +1,19 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 
+all_coords = {}
 
 class Color(Enum):
     white = 1
     black = 2
 
 class Figure(ABC):
-    def __init__(self, x, y, color):
+    def __init__(self, x, y, color, name):
         self.x = x
         self.y = y
         self.color = color
-
+        self.name = name
+        all_coords[name] = [self.x, self.y]
     def _check_other_figures(self, x, y, board):
         return True
 
