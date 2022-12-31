@@ -12,8 +12,13 @@ class Pawn(Figure):
             return True
         return False
     def can_eat(self):
+
         for figure in all_figures:
             if [self.x + 1, self.y + 1] == [figure.x, figure.y] and self.color == 1 or [self.x - 1, self.y + 1] == [figure.x, figure.y] and self.color == 1 or [self.x - 1, self.y - 1] == [figure.x, figure.y] and self.color == 2 or [self.x + 1, self.y - 1] == [figure.x, figure.y] and self.color == 2:
+                for key, value in dict(all_coords).items():
+                    if value == [figure.x, figure.y]:
+                        del all_coords[key]
+
                 all_figures.remove(figure)
                 return True
 

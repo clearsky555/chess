@@ -125,6 +125,9 @@ fig, ax = plt.subplots()
 ax.pcolormesh(board)
 
 # ходы для проверки
+print(len(all_coords))
+print(len(all_figures))
+
 p1.move(1,3)
 p1.move(1,4)
 
@@ -190,7 +193,5 @@ for x in all_figures:
 # ax.text(b4.x-1, b4.y-1, b4.name, color = 'black')
 # ax.text(kk.x-1, kk.y-1, kk.name, color = 'black')
 # ax.text(qq.x-1, qq.y-1, qq.name, color = 'black')
-
-
 
 plt.show()
