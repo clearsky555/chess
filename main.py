@@ -1,5 +1,5 @@
 from figures.bishop import Bishop
-from figures.figure import all_coords
+from figures.figure import all_coords, all_figures
 from figures.king import King
 from figures.knight import Knight
 from figures.pawn import Pawn
@@ -130,52 +130,66 @@ p1.move(1,4)
 
 p10.move(2,6)
 p10.move(2,5)
+p1.move(2,5)
+
+p9.move(1,6)
+p1.move(1,6)
+
+p13.move(5,6)
+p6.move(6,3)
+p13.move(5,5)
+p6.move(6,4)
+p13.move(6,4)
+p5.move(5,3)
+p13.move(5,3)
+
 print(all_coords)
 print(len(all_coords))
+print(len(all_figures))
+
 
 print(p1.x)
 print(p1.color)
 print(p10.color)
-
-
 k1.move(3,3)
 
 # r1.move(1,8)
 
-
 # отображения фигур на доске в виде текста
-ax.text(k.x-1, k.y-1, k.name, color = 'white')
-ax.text(p1.x-1, p1.y-1, p1.name, color = 'white')
-ax.text(p2.x-1, p2.y-1, p2.name, color = 'white')
-ax.text(p3.x-1, p3.y-1, p3.name, color = 'white')
-ax.text(p4.x-1, p4.y-1, p4.name, color = 'white')
-ax.text(p5.x-1, p5.y-1, p5.name, color = 'white')
-ax.text(p6.x-1, p6.y-1, p6.name, color = 'white')
-ax.text(p7.x-1, p7.y-1, p7.name, color = 'white')
-ax.text(p8.x-1, p8.y-1, p8.name, color = 'white')
-ax.text(r1.x-1, r1.y-1, r1.name, color = 'white')
-ax.text(r2.x-1, r2.y-1, r2.name, color = 'white')
-ax.text(k1.x-1, k1.y-1, k1.name, color = 'white')
-ax.text(k2.x-1, k2.y-1, k2.name, color = 'white')
-ax.text(b1.x-1, b1.y-1, b1.name, color = 'white')
-ax.text(b2.x-1, b2.y-1, b2.name, color = 'white')
-ax.text(q.x-1, q.y-1, q.name, color = 'white')
-ax.text(p9.x-1, p9.y-1, p9.name, color = 'black')
-ax.text(p10.x-1, p10.y-1, p10.name, color = 'black')
-ax.text(p11.x-1, p11.y-1, p11.name, color = 'black')
-ax.text(p12.x-1, p12.y-1, p12.name, color = 'black')
-ax.text(p13.x-1, p13.y-1, p13.name, color = 'black')
-ax.text(p14.x-1, p14.y-1, p14.name, color = 'black')
-ax.text(p15.x-1, p15.y-1, p15.name, color = 'black')
-ax.text(p16.x-1, p16.y-1, p16.name, color = 'black')
-ax.text(r3.x-1, r3.y-1, r3.name, color = 'black')
-ax.text(r4.x-1, r4.y-1, r4.name, color = 'black')
-ax.text(k3.x-1, k3.y-1, k3.name, color = 'black')
-ax.text(k4.x-1, k4.y-1, k4.name, color = 'black')
-ax.text(b3.x-1, b3.y-1, b3.name, color = 'black')
-ax.text(b4.x-1, b4.y-1, b4.name, color = 'black')
-ax.text(kk.x-1, kk.y-1, kk.name, color = 'black')
-ax.text(qq.x-1, qq.y-1, qq.name, color = 'black')
+for x in all_figures:
+     ax.text(x.x - 1, x.y - 1, x.name)
+# ax.text(k.x-1, k.y-1, k.name, color = 'white')
+# ax.text(p1.x-1, p1.y-1, p1.name, color = 'white')
+# ax.text(p2.x-1, p2.y-1, p2.name, color = 'white')
+# ax.text(p3.x-1, p3.y-1, p3.name, color = 'white')
+# ax.text(p4.x-1, p4.y-1, p4.name, color = 'white')
+# ax.text(p5.x-1, p5.y-1, p5.name, color = 'white')
+# ax.text(p6.x-1, p6.y-1, p6.name, color = 'white')
+# ax.text(p7.x-1, p7.y-1, p7.name, color = 'white')
+# ax.text(p8.x-1, p8.y-1, p8.name, color = 'white')
+# ax.text(r1.x-1, r1.y-1, r1.name, color = 'white')
+# ax.text(r2.x-1, r2.y-1, r2.name, color = 'white')
+# ax.text(k1.x-1, k1.y-1, k1.name, color = 'white')
+# ax.text(k2.x-1, k2.y-1, k2.name, color = 'white')
+# ax.text(b1.x-1, b1.y-1, b1.name, color = 'white')
+# ax.text(b2.x-1, b2.y-1, b2.name, color = 'white')
+# ax.text(q.x-1, q.y-1, q.name, color = 'white')
+# ax.text(p9.x-1, p9.y-1, p9.name, color = 'black')
+# ax.text(p10.x-1, p10.y-1, p10.name, color = 'black')
+# ax.text(p11.x-1, p11.y-1, p11.name, color = 'black')
+# ax.text(p12.x-1, p12.y-1, p12.name, color = 'black')
+# ax.text(p13.x-1, p13.y-1, p13.name, color = 'black')
+# ax.text(p14.x-1, p14.y-1, p14.name, color = 'black')
+# ax.text(p15.x-1, p15.y-1, p15.name, color = 'black')
+# ax.text(p16.x-1, p16.y-1, p16.name, color = 'black')
+# ax.text(r3.x-1, r3.y-1, r3.name, color = 'black')
+# ax.text(r4.x-1, r4.y-1, r4.name, color = 'black')
+# ax.text(k3.x-1, k3.y-1, k3.name, color = 'black')
+# ax.text(k4.x-1, k4.y-1, k4.name, color = 'black')
+# ax.text(b3.x-1, b3.y-1, b3.name, color = 'black')
+# ax.text(b4.x-1, b4.y-1, b4.name, color = 'black')
+# ax.text(kk.x-1, kk.y-1, kk.name, color = 'black')
+# ax.text(qq.x-1, qq.y-1, qq.name, color = 'black')
 
 
 

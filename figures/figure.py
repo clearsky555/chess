@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from enum import Enum
 
 all_coords = {}
-
+all_figures = []
 class Color(Enum):
     white = 1
     black = 2
@@ -12,8 +12,13 @@ class Figure(ABC):
         self.x = x
         self.y = y
         self.color = color
+        # if self.color == 1:
+        #     self.color = 'white'
+        # else:
+        #     self.color = 'black'
         self.name = name
         all_coords[name] = [self.x, self.y]
+        all_figures.append(self)
     def _check_other_figures(self, x, y, board):
         return True
 
