@@ -1,4 +1,4 @@
-from figures.figure import Figure
+from figures.figure import Figure, all_figures, all_coords
 
 
 class Queen(Figure):
@@ -16,5 +16,12 @@ class Queen(Figure):
         if self._check(x, y):
             self.x = x
             self.y = y
+            for figure in all_figures:
+                if [self.x, self.y] == [figure.x, figure.y] and self.color != figure.color:
+                    for key, value in dict(all_coords).items():
+                        if value == [figure.x, figure.y]:
+                            del all_coords[key]
+                    all_figures.remove(figure)
+            all_coords[self.name] = [self.x, self.y]
         else:
             print('move is invalid')

@@ -8,12 +8,12 @@ import matplotlib.pyplot as plt
 from figures.queen import Queen
 from figures.rook import Rook
 
-print('Это шахматный эмулятор')
+print('Это шахматный эмулятор. Выберите фигуру')
 
 # БЕЛЫЕ ФИГУРЫ
 p1 = Pawn(1,2,1, 'пешка1')
 # p1.name = 'пешка1'
-print(p1.__dict__)
+# print(p1.__dict__)
 
 p2 = Pawn(2,2,1, 'пешка2')
 # p2.name = 'пешка2'
@@ -63,7 +63,7 @@ k = King(5,1,1, 'король')
 #ЧЕРНЫЕ ФИГУРЫ
 p9 = Pawn(1,7,2,'пешка1b')
 # p9.name = 'пешка1'
-print(p9.__dict__)
+# print(p9.__dict__)
 
 p10 = Pawn(2,7,2,'пешка2b')
 # p10.name = 'пешка2'
@@ -121,44 +121,21 @@ board = [[ 0, 1, 0, 1, 0, 1, 0, 1],
      ]
 
 fig, ax = plt.subplots()
-
 ax.pcolormesh(board)
 
 # ходы для проверки
-print(len(all_coords))
-print(len(all_figures))
+# print(len(all_coords))
+# print(len(all_figures))
+# k3.move(3,6)
+# b3.move(5,6)
+# qq.move(4,6)
+# kk.castling(r3)
+# p9.move(1,5)
+# p9.move(1,3)
 
-p1.move(1,3)
-p1.move(1,4)
 
-p10.move(2,6)
-p10.move(2,5)
-p1.move(2,5)
-
-p9.move(1,6)
-p1.move(1,6)
-
-p13.move(5,6)
-p6.move(6,3)
-p13.move(5,5)
-p6.move(6,4)
-p13.move(6,4)
-p5.move(5,3)
-p13.move(5,3)
-
-print(all_coords)
-print(len(all_coords))
-print(len(all_figures))
-
-r2.move(8,8)
-r2.move(7,8)
-r3.move(7,8)
-
-k1.move(3,3)
-k1.move(2,5)
-k1.move(3,7)
-print(len(all_coords))
-print(len(all_figures))
+# print(len(all_coords))
+# print(len(all_figures))
 
 
 # r1.move(1,8)
@@ -166,6 +143,7 @@ print(len(all_figures))
 # отображения фигур на доске в виде текста
 for x in all_figures:
      ax.text(x.x - 1, x.y - 1, x.name)
+
 # ax.text(k.x-1, k.y-1, k.name, color = 'white')
 # ax.text(p1.x-1, p1.y-1, p1.name, color = 'white')
 # ax.text(p2.x-1, p2.y-1, p2.name, color = 'white')
@@ -199,4 +177,17 @@ for x in all_figures:
 # ax.text(kk.x-1, kk.y-1, kk.name, color = 'black')
 # ax.text(qq.x-1, qq.y-1, qq.name, color = 'black')
 
+
 plt.show()
+while True:
+    figure_name = input('введите название фигуры: ')
+    for figure in all_figures:
+        if figure_name == figure.name:
+            a, b = map(int, input('введите координаты хода через пробел: ').split())
+            figure.move(a, b)
+
+    fig, ax = plt.subplots()
+    ax.pcolormesh(board)
+    for x in all_figures:
+         ax.text(x.x - 1, x.y - 1, x.name)
+    plt.show()
