@@ -150,11 +150,16 @@ print(all_coords)
 print(len(all_coords))
 print(len(all_figures))
 
+r2.move(8,8)
+r2.move(7,8)
+r3.move(7,8)
 
-print(p1.x)
-print(p1.color)
-print(p10.color)
 k1.move(3,3)
+k1.move(2,5)
+k1.move(3,7)
+print(len(all_coords))
+print(len(all_figures))
+
 
 # r1.move(1,8)
 

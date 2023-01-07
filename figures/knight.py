@@ -1,9 +1,9 @@
-from figures.figure import Figure
+from figures.figure import Figure, all_figures, all_coords
 
 
 class Knight(Figure):
     def _check_knight_moves(self, x, y):
-        if y - self.y == abs(2) and x - self.x == abs(1) or x - self.x == abs(2) and y - self.y == abs(1):
+        if abs(y - self.y) == 2 and abs(x - self.x) == 1 or abs(x - self.x) == 2 and abs(y - self.y) == 1:
             return True
         return False
 
@@ -16,5 +16,12 @@ class Knight(Figure):
         if self._check(x, y):
             self.x = x
             self.y = y
+            for figure in all_figures:
+                if [self.x, self.y] == [figure.x, figure.y] and self.color != figure.color:
+                    for key, value in dict(all_coords).items():
+                        if value == [figure.x, figure.y]:
+                            del all_coords[key]
+                    all_figures.remove(figure)
+            all_coords[self.name] = [self.x, self.y]
         else:
             print('move is invalid')
