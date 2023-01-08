@@ -110,18 +110,31 @@ qq = Queen(4,8,2,'ферзьb')
 kk = King(5,8,2,'корольb')
 # kk.name = 'король'
 
-board = [[ 0, 1, 0, 1, 0, 1, 0, 1],
-     [ 1, 0, 1, 0, 1, 0, 1, 0],
-     [ 0, 1, 0, 1, 0, 1, 0, 1],
-     [1, 0, 1, 0, 1, 0, 1, 0],
-     [ 0, 1, 0, 1, 0, 1, 0, 1],
-     [ 1, 0, 1, 0, 1, 0, 1, 0],
-     [ 0, 1, 0, 1, 0, 1, 0, 1],
-     [1, 0, 1, 0, 1, 0, 1, 0]
+# board = [[ 0, 1, 0, 1, 0, 1, 0, 1],
+#      [ 1, 0, 1, 0, 1, 0, 1, 0],
+#      [ 0, 1, 0, 1, 0, 1, 0, 1],
+#      [1, 0, 1, 0, 1, 0, 1, 0],
+#      [ 0, 1, 0, 1, 0, 1, 0, 1],
+#      [ 1, 0, 1, 0, 1, 0, 1, 0],
+#      [ 0, 1, 0, 1, 0, 1, 0, 1],
+#      [1, 0, 1, 0, 1, 0, 1, 0]
+#      ]
+
+
+board = [
+     [ 25, 150, 25, 150, 25, 150, 25, 150],
+     [ 150, 25, 150, 25, 150, 25, 150, 25],
+     [25, 150, 25, 150, 25, 150, 25, 150],
+     [150, 25, 150, 25, 150, 25, 150, 25],
+     [25, 150, 25, 150, 25, 150, 25, 150],
+     [150, 25, 150, 25, 150, 25, 150, 25],
+     [25, 150, 25, 150, 25, 150, 25, 150],
+     [150, 25, 150, 25, 150, 25, 150, 25],
      ]
 
 fig, ax = plt.subplots()
-ax.pcolormesh(board)
+ax.pcolor(board, cmap='Accent')
+
 
 # ходы для проверки
 # print(len(all_coords))
@@ -179,15 +192,28 @@ for x in all_figures:
 
 
 plt.show()
+
 while True:
     figure_name = input('введите название фигуры: ')
     for figure in all_figures:
-        if figure_name == figure.name:
+        if figure_name == figure.name and isinstance(figure, King):
+            print('1.рокировка')
+            print('2.ход')
+            command = int(input('выберите команду: '))
+            if command == 1:
+                rook_name = input('выберите ладью: ')
+                for figure1 in all_figures:
+                    if rook_name == figure1.name and isinstance(figure1, Rook):
+                        figure.castling(figure1)
+            else:
+                a, b = map(int, input('введите координаты хода через пробел: ').split())
+                figure.move(a, b)
+        elif figure_name == figure.name:
             a, b = map(int, input('введите координаты хода через пробел: ').split())
             figure.move(a, b)
 
     fig, ax = plt.subplots()
-    ax.pcolormesh(board)
+    ax.pcolor(board, cmap='Accent')
     for x in all_figures:
          ax.text(x.x - 1, x.y - 1, x.name)
     plt.show()
