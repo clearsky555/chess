@@ -4,11 +4,15 @@ from figures.king import King
 from figures.knight import Knight
 from figures.pawn import Pawn
 import matplotlib.pyplot as plt
-
 from figures.queen import Queen
 from figures.rook import Rook
 
-print('Это шахматный эмулятор. Выберите фигуру')
+
+print('Это шахматный эмулятор. Выберите название фигуры, координаты хода и закройте окно для ввода')
+
+
+
+
 
 # БЕЛЫЕ ФИГУРЫ
 p1 = Pawn(1,2,1, 'пешка1')
@@ -145,6 +149,13 @@ ax.pcolor(board, cmap='Accent')
 # kk.castling(r3)
 # p9.move(1,5)
 # p9.move(1,3)
+# p10.move(2,5)
+# p10.move(2,4)
+# p10.move(2,3)
+# p1.move(1,4)
+# # p10.move(1,2)
+# p10.move(3,2)
+
 
 
 # print(len(all_coords))
@@ -190,13 +201,12 @@ for x in all_figures:
 # ax.text(kk.x-1, kk.y-1, kk.name, color = 'black')
 # ax.text(qq.x-1, qq.y-1, qq.name, color = 'black')
 
-
 plt.show()
 
 while True:
-    figure_name = input('введите название фигуры: ')
+    figure_name = input('введите название фигуры и координаты хода: ').split()
     for figure in all_figures:
-        if figure_name == figure.name and isinstance(figure, King):
+        if figure_name[0] == figure.name and isinstance(figure, King):
             print('1.рокировка')
             print('2.ход')
             command = int(input('выберите команду: '))
@@ -205,12 +215,83 @@ while True:
                 for figure1 in all_figures:
                     if rook_name == figure1.name and isinstance(figure1, Rook):
                         figure.castling(figure1)
-            else:
-                a, b = map(int, input('введите координаты хода через пробел: ').split())
+            elif command == 2:
+                a, b = int(figure_name[1]), int(figure_name[2])#map(int, input('введите координаты хода через пробел: ').split())
                 figure.move(a, b)
-        elif figure_name == figure.name:
-            a, b = map(int, input('введите координаты хода через пробел: ').split())
+        elif figure_name[0] == figure.name:
+            a, b = int(figure_name[1]), int(figure_name[2])#map(int, input('введите координаты хода через пробел: ').split())
             figure.move(a, b)
+            if 'пешка' in figure.name and figure.color == 1 and figure.y == 8:
+                command1 = int(input('выберите вместо пешки любую фигуру: 1. ладья 2. конь 3. слон 4 ферзь'))
+                if command1 == 1:
+                    new_figure = input('выберите название фигуры: ')
+                    for x in all_figures:
+                        while x.name == new_figure:
+                            print('это название уже занято')
+                            new_figure = input('выберите название фигуры: ')
+                    New_figure1 = Rook(figure.x, figure.y, figure.color, new_figure)
+                    all_figures.remove(figure)
+                elif command1 == 2:
+                    new_figure = input('выберите название фигуры: ')
+                    for x in all_figures:
+                        while x.name == new_figure:
+                            print('это название уже занято')
+                            new_figure = input('выберите название фигуры: ')
+                    New_figure2 = Knight(figure.x, figure.y, figure.color, new_figure)
+                    all_figures.remove(figure)
+                elif command1 == 3:
+                    new_figure = input('выберите название фигуры: ')
+                    for x in all_figures:
+                        while x.name == new_figure:
+                            print('это название уже занято')
+                            new_figure = input('выберите название фигуры: ')
+                    New_figure3 = Bishop(figure.x, figure.y, figure.color, new_figure)
+                    all_figures.remove(figure)
+                elif command1 == 4:
+                    new_figure = input('выберите название фигуры: ')
+                    for x in all_figures:
+                        while x.name == new_figure:
+                            print('это название уже занято')
+                            new_figure = input('выберите название фигуры: ')
+                    New_figure4 = Queen(figure.x, figure.y, figure.color, new_figure)
+                    all_figures.remove(figure)
+
+            elif 'пешка' in figure.name and figure.color == 2 and figure.y == 1:
+                command1 = int(input('выберите вместо пешки любую фигуру: 1. ладья 2. конь 3. слон 4 ферзь'))
+                if command1 == 1:
+                    new_figure = input('выберите название фигуры: ')
+                    for x in all_figures:
+                        while x.name == new_figure:
+                            print('это название уже занято')
+                            new_figure = input('выберите название фигуры: ')
+                    New_figure5 = Rook(figure.x, figure.y, figure.color, new_figure)
+                    all_figures.remove(figure)
+                elif command1 == 2:
+                    new_figure = input('выберите название фигуры: ')
+                    for x in all_figures:
+                        while x.name == new_figure:
+                            print('это название уже занято')
+                            new_figure = input('выберите название фигуры: ')
+                    New_figure6 = Knight(figure.x, figure.y, figure.color, new_figure)
+                    all_figures.remove(figure)
+                elif command1 == 3:
+                    new_figure = input('выберите название фигуры: ')
+                    for x in all_figures:
+                        while x.name == new_figure:
+                            print('это название уже занято')
+                            new_figure = input('выберите название фигуры: ')
+                    New_figure7 = Bishop(figure.x, figure.y, figure.color, new_figure)
+                    all_figures.remove(figure)
+                elif command1 == 4:
+                    new_figure = input('выберите название фигуры: ')
+                    for x in all_figures:
+                        while x.name == new_figure:
+                            print('это название уже занято')
+                            new_figure = input('выберите название фигуры: ')
+                    New_figure8 = Queen(figure.x, figure.y, figure.color, new_figure)
+                    all_figures.remove(figure)
+
+
 
     fig, ax = plt.subplots()
     ax.pcolor(board, cmap='Accent')
