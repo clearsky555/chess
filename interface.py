@@ -44,25 +44,43 @@ def show_menu(move_counter=0):
                     a, b = int(figure_name[1]), int(figure_name[2])
                     figure.move(a, b)
 
-                    # ЗДЕСЬ НАДО ДОДЕЛАТЬ ОЧЕРЕДНОСТЬ ХОДОВ
+                    # ЗДЕСЬ НАДО ПРОВЕРИТЬ ОЧЕРЕДНОСТЬ ХОДОВ
 
                     move_counter += 1
-                    print(move_counter)
-            elif figure_name[0] == figure.name:
-                a, b = int(figure_name[1]), int(figure_name[2])
-                figure.move(a, b)
 
+                    # ЗДЕСЬ НАДО ПРОВЕРИТЬ ОЧЕРЕДНОСТЬ ХОДОВ
+
+            elif figure_name[0] == figure.name:
+                if figure.color == 1 and move_counter == 0 or figure.color == 1 and move_counter % 2 == 0:
+
+                    a, b = int(figure_name[1]), int(figure_name[2])
+                    figure.move(a, b)
+                    move_counter += 1
+
+                elif figure.color == 1 and move_counter % 2 == 1:
+
+                    print('сейчас очередь черных')
+
+                elif figure.color == 2 and move_counter % 2 == 1:
+
+                    a, b = int(figure_name[1]), int(figure_name[2])
+                    figure.move(a, b)
+                    move_counter += 1
+
+                elif figure.color == 2 and move_counter % 2 == 0:
+
+                    print('сейчас очередь белых')
                 # ЗДЕСЬ НАДО ДОДЕЛАТЬ ОЧЕРЕДНОСТЬ ХОДОВ
 
-                move_counter += 1
-                print(move_counter)
-                if figure.color == 1 and move_counter % 2 == 0:
-                    print('сейчас очередь черных')
+                # move_counter += 1
+                # print(move_counter)
+                # if figure.color == 1 and move_counter % 2 == 0:
+                #     print('сейчас очередь черных')
 
                 # ЗДЕСЬ НАДО ДОДЕЛАТЬ ОЧЕРЕДНОСТЬ ХОДОВ
 
                 if 'пешка' in figure.name and figure.color == 1 and figure.y == 8:
-                    command1 = int(input('выберите вместо пешки любую фигуру: 1. ладья 2. конь 3. слон 4 ферзь'))
+                    command1 = int(input('выберите вместо пешки любую фигуру: 1. ладья 2. конь 3. слон 4 ферзь: '))
                     if command1 == 1:
                         new_figure = input('выберите название фигуры: ')
                         for x in all_figures:
@@ -97,7 +115,7 @@ def show_menu(move_counter=0):
                         all_figures.remove(figure)
 
                 elif 'пешка' in figure.name and figure.color == 2 and figure.y == 1:
-                    command1 = int(input('выберите вместо пешки любую фигуру: 1. ладья 2. конь 3. слон 4 ферзь'))
+                    command1 = int(input('выберите вместо пешки любую фигуру: 1. ладья 2. конь 3. слон 4 ферзь: '))
                     if command1 == 1:
                         new_figure = input('выберите название фигуры: ')
                         for x in all_figures:
