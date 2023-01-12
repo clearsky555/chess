@@ -1,5 +1,4 @@
-from figures import rook
-from figures.figure import Figure, all_figures, all_coords
+from figures.figure import Figure, all_figures
 
 
 class King(Figure):
@@ -14,24 +13,16 @@ class King(Figure):
         if self.first_move:
             if rook.x == 1 and rook.y == 1:
                 rook.move(4,1)
-                all_coords[rook.name] = [rook.x, rook.y]
                 self.move(3,1)
-                all_coords[self.name] = [self.x, self.y]
             elif rook.x == 8 and rook.y == 1:
                 rook.move(6,1)
-                all_coords[rook.name] = [rook.x, rook.y]
                 self.move(7,1)
-                all_coords[self.name] = [self.x, self.y]
             elif rook.x == 1 and rook.y == 8:
                 rook.move(4,8)
-                all_coords[rook.name] = [rook.x, rook.y]
                 self.move(3,8)
-                all_coords[self.name] = [self.x, self.y]
             elif rook.x == 8 and rook.y == 8:
                 rook.move(6,8)
-                all_coords[rook.name] = [rook.x, rook.y]
                 self.move(7,8)
-                all_coords[self.name] = [self.x, self.y]
 
 
     def _check(self, x, y):
@@ -45,11 +36,8 @@ class King(Figure):
             self.y = y
             for figure in all_figures:
                 if [self.x, self.y] == [figure.x, figure.y] and self.color != figure.color:
-                    for key, value in dict(all_coords).items():
-                        if value == [figure.x, figure.y]:
-                            del all_coords[key]
+
                     all_figures.remove(figure)
-            all_coords[self.name] = [self.x, self.y]
             self.first_move = False
         else:
             print('move is invalid')

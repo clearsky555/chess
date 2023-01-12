@@ -1,4 +1,4 @@
-from figures.figure import Figure, all_figures, all_coords
+from figures.figure import Figure, all_figures
 
 
 class Bishop(Figure):
@@ -18,10 +18,7 @@ class Bishop(Figure):
             self.y = y
             for figure in all_figures:
                 if [self.x, self.y] == [figure.x, figure.y] and self.color != figure.color:
-                    for key, value in dict(all_coords).items():
-                        if value == [figure.x, figure.y]:
-                            del all_coords[key]
+
                     all_figures.remove(figure)
-            all_coords[self.name] = [self.x, self.y]
         else:
             print('move is invalid')

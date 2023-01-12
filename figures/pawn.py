@@ -1,4 +1,4 @@
-from figures.figure import Figure, all_coords, all_figures
+from figures.figure import Figure, all_figures
 
 
 
@@ -21,20 +21,24 @@ class Pawn(Figure):
     def can_eat(self):
 
         for figure in all_figures:
-            if [self.x + 1, self.y + 1] == [figure.x, figure.y] and self.color == 1 or [self.x - 1, self.y + 1] == [figure.x, figure.y] and self.color == 1 or [self.x - 1, self.y - 1] == [figure.x, figure.y] and self.color == 2 or [self.x + 1, self.y - 1] == [figure.x, figure.y] and self.color == 2:
-                for key, value in dict(all_coords).items():
-                    if value == [figure.x, figure.y]:
-                        del all_coords[key]
+            if abs(figure.x - self.x) == 1 and figure.y - self.y == 1 and self.color == 1:
 
-                all_figures.remove(figure)
                 return True
+
+            elif abs(figure.x - self.x) == 1 and figure.y - self.y == -1 and self.color == 2:
+
+                return True
+
+
 
 
     def move(self, x, y):
         if self._check(x, y) or self.can_eat():
             self.x = x
             self.y = y
-            all_coords[self.name] = [self.x, self.y]
+            for figure in all_figures:
+                if [self.x, self.y] == [figure.x, figure.y] and self.color != figure.color:
+                    all_figures.remove(figure)
             self.first_move = False
 
         else:
